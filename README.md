@@ -1,4 +1,3 @@
-[virus-amor.html](https://github.com/user-attachments/files/26163070/virus-amor.html)
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,14 +5,39 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Virus de Amor 😈❤️ - Piano Sonando</title>
   <style>
-    body { margin:0; padding:0; background:#000; overflow:hidden; font-family:Arial,sans-serif; color:white; text-align:center; }
-    .contenedor { position:relative; display:block; max-width:100%; margin:10px auto; border:6px solid #ff00ff; box-shadow:0 0 50px #ff00ff; }
-    .contenedor img { width:100%; display:block; }
+    body { 
+      margin:0; padding:0; 
+      background:#000; 
+      overflow:hidden; 
+      font-family:Arial,sans-serif; 
+      color:white; 
+      text-align:center; 
+    }
+    .contenedor { 
+      position:relative; 
+      display:block; 
+      width:100%; 
+      max-width:100%; 
+      margin:0 auto; 
+      border:6px solid #ff00ff; 
+      box-shadow:0 0 50px #ff00ff; 
+    }
+    .contenedor img { 
+      width:100%; 
+      height:auto; 
+      display:block; 
+      object-fit: contain; 
+    }
+
+    /* Mejora para celulares (se ve grande y bonito) */
+    @media (max-width: 768px) {
+      .contenedor { border-width:4px; box-shadow:0 0 30px #ff00ff; }
+      body { overflow-y:auto; }
+    }
 
     .zona-gato-sol { position:absolute; top:12%; left:52%; width:28%; height:31%; cursor:pointer; z-index:10; }
     .zona-flor { position:absolute; top:53%; left:59%; width:32%; height:39%; cursor:pointer; z-index:10; }
     
-    /* NUEVA ZONA: Casa con dos gatos en la colina (calibrada en la parte verde izquierda) */
     .zona-casa { 
       position:absolute; 
       top:60%; 
@@ -55,13 +79,10 @@
     <img src="meme.jpg" alt="Gato Sol y Gato Flor">
     <div class="zona-gato-sol" onclick="tocarGatoSol(event)"></div>
     <div class="zona-flor" onclick="tocarFlor(event)"></div>
-    
-    <!-- NUEVA CASA CON GATOS EN LA COLINA -->
     <div class="zona-casa" onclick="tocarCasa(event)">
       🏡<br>
       <span style="font-size:0.65em;">🐈 🐈‍⬛</span>
     </div>
-    
     <div class="abeja abeja1" onclick="tocarAbeja(this)">🐝</div>
     <div class="abeja abeja2" onclick="tocarAbeja(this)">🐝</div>
     <div class="abeja abeja3" onclick="tocarAbeja(this)">🐝</div>
@@ -117,10 +138,9 @@
     function tocarGatoSol(e){ e.stopImmediatePropagation(); crearBurbuja('quisiera ser sol para verte todos los días❤️', e.clientX, e.clientY, true); }
     function tocarFlor(e){ e.stopImmediatePropagation(); crearBurbuja('te amo Liz ❤️<br><span style="font-size:0.85em;">(el gato flor te lo dice)</span>', e.clientX, e.clientY, true); }
 
-    // NUEVA FUNCIÓN: Casa + gatos en la colina
     function tocarCasa(e){ 
       e.stopImmediatePropagation(); 
-      crearBurbuja('¡MIAU MIAU! 🏡<br>🐈 y 🐈‍⬛ tosh dosh ❤️<br>¡Voziozi!', e.clientX, e.clientY, true); 
+      crearBurbuja('¡MIAU MIAU! 🏡<br>🐈 y 🐈‍⬛ te aman desde la colina ❤️<br>¡Ven a abrazarnos!', e.clientX, e.clientY, true); 
       playMeow();
     }
 
@@ -132,17 +152,13 @@
       const filter = ctx.createBiquadFilter();
       filter.type = 'lowpass';
       filter.frequency.value = 1800;
-
       osc.frequency.setValueAtTime(920, ctx.currentTime);
       osc.frequency.linearRampToValueAtTime(380, ctx.currentTime + 0.75);
-
       gain.gain.setValueAtTime(0.38, ctx.currentTime);
       gain.gain.linearRampToValueAtTime(0.02, ctx.currentTime + 1.25);
-
       osc.connect(filter);
       filter.connect(gain);
       gain.connect(ctx.destination);
-
       osc.start();
       setTimeout(() => { osc.stop(); }, 1400);
     }
@@ -156,7 +172,6 @@
       setTimeout(()=>{g.gain.linearRampToValueAtTime(0,a.currentTime+0.8); o.stop(a.currentTime+1);},50);
     }
 
-    // Toque random (ahora excluye también la casa)
     document.addEventListener('click', e => {
       if(e.target.id === 'btnMusica') return;
       if(!e.target.classList.contains('abeja') && 
@@ -168,11 +183,16 @@
       }
     });
 
-    // Soporte móvil
     document.addEventListener('touchstart', ()=>{ if(audio.paused) audio.play(); });
   </script>
 
   <p style="margin-top:15px; color:#ff69b4; font-size:1em;">
+    ✅ ¡Página con gatos enamorados! 😂<br>
+    Toca el botón rosa para música ❤️<br>
+    Toca el gato sol, la flor o la 🏡 para sorpresas + miau 🐈🐈‍⬛
+  </p>
+</body>
+</html>
     
   </p>
 </body>
