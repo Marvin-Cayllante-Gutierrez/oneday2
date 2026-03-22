@@ -3,33 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Virus de Amor 😈❤️ - Piano Sonando</title>
+  <title>Virus de Amor 😈❤️ - Para Liz</title>
   <style>
-    body { 
-      margin:0; padding:0; 
-      background:#000; 
-      overflow:hidden; 
-      font-family:Arial,sans-serif; 
-      color:white; 
-      text-align:center; 
-    }
-    .contenedor { 
-      position:relative; 
-      display:block; 
-      width:100%; 
-      max-width:100%; 
-      margin:0 auto; 
-      border:6px solid #ff00ff; 
-      box-shadow:0 0 50px #ff00ff; 
-    }
-    .contenedor img { 
-      width:100%; 
-      height:auto; 
-      display:block; 
-      object-fit: contain; 
-    }
+    body { margin:0; padding:0; background:#000; overflow:hidden; font-family:Arial,sans-serif; color:white; text-align:center; }
+    .contenedor { position:relative; display:block; width:100%; max-width:100%; margin:0 auto; border:6px solid #ff00ff; box-shadow:0 0 50px #ff00ff; }
+    .contenedor img { width:100%; height:auto; display:block; object-fit: contain; }
 
-    /* Mejora para celulares (se ve grande y bonito) */
     @media (max-width: 768px) {
       .contenedor { border-width:4px; box-shadow:0 0 30px #ff00ff; }
       body { overflow-y:auto; }
@@ -37,25 +16,7 @@
 
     .zona-gato-sol { position:absolute; top:12%; left:52%; width:28%; height:31%; cursor:pointer; z-index:10; }
     .zona-flor { position:absolute; top:53%; left:59%; width:32%; height:39%; cursor:pointer; z-index:10; }
-    
-    .zona-casa { 
-      position:absolute; 
-      top:60%; 
-      left:12%; 
-      width:22%; 
-      height:26%; 
-      cursor:pointer; 
-      z-index:10; 
-      display:flex; 
-      flex-direction:column; 
-      align-items:center; 
-      justify-content:center; 
-      font-size:48px; 
-      line-height:1.05; 
-      text-align:center; 
-      color:#fff; 
-      text-shadow:3px 3px 8px #000, 0 0 15px #ff0; 
-    }
+    .zona-casa { position:absolute; top:60%; left:12%; width:22%; height:26%; cursor:pointer; z-index:10; display:flex; flex-direction:column; align-items:center; justify-content:center; font-size:48px; line-height:1.05; text-align:center; color:#fff; text-shadow:3px 3px 8px #000, 0 0 15px #ff0; }
 
     .abeja { position:absolute; font-size:54px; z-index:15; cursor:pointer; animation:volar linear infinite; filter:drop-shadow(0 0 12px #ff0); }
     .abeja1 { top:8%; left:12%; animation-duration:8.5s; }
@@ -68,6 +29,24 @@
     @keyframes aparecer { from{opacity:0;transform:scale(0.7)} to{opacity:1;transform:scale(1)} }
     @keyframes desaparecer { to{opacity:0;transform:translateY(-40px)} }
 
+    /* 🔥 NUEVA SORPRESA: CORAZONES CAYENDO */
+    .corazon { 
+      position:absolute; 
+      font-size:28px; 
+      color:#ff1493; 
+      text-shadow:0 0 10px #ff00ff; 
+      z-index:5; 
+      pointer-events:none; 
+      animation:caer linear forwards; 
+      user-select:none; 
+    }
+    @keyframes caer {
+      to { 
+        transform: translateY(120vh) rotate(720deg); 
+        opacity:0; 
+      }
+    }
+
     #btnMusica { position:fixed; top:8px; left:50%; transform:translateX(-50%); background:#ff1493; color:white; padding:15px 30px; font-size:1.5em; border:none; border-radius:50px; box-shadow:0 0 20px #ff00ff; z-index:100; cursor:pointer; width:90%; max-width:340px; }
   </style>
 </head>
@@ -76,12 +55,11 @@
   <button id="btnMusica" onclick="iniciarMusica()">❤️ Toca aquí para que suene el piano romántico 🎹😍</button>
 
   <div class="contenedor">
-    <img src="meme.jpg" alt="Gato Sol y Gato Flor">
+    <img src="https://files.catbox.moe/jb56ah.jpg" alt="Gato Sol y Gato Flor">
     <div class="zona-gato-sol" onclick="tocarGatoSol(event)"></div>
     <div class="zona-flor" onclick="tocarFlor(event)"></div>
     <div class="zona-casa" onclick="tocarCasa(event)">
-      🏡<br>
-      <span style="font-size:0.65em;">🐈 🐈‍⬛</span>
+      🏡<br><span style="font-size:0.65em;">🐈 🐈‍⬛</span>
     </div>
     <div class="abeja abeja1" onclick="tocarAbeja(this)">🐝</div>
     <div class="abeja abeja2" onclick="tocarAbeja(this)">🐝</div>
@@ -99,30 +77,17 @@
     function iniciarMusica() {
       audio.volume = 0.62;
       audio.play().then(() => {
-        document.getElementById('btnMusica').innerHTML = "🎵 ¡Música activada forever! ❤️ Sigue tocando 😈";
+        document.getElementById('btnMusica').innerHTML = "🎵 ¡Música activada forever! ❤️";
         document.getElementById('btnMusica').style.background = "#00ff7f";
         setTimeout(()=>{ document.getElementById('btnMusica').style.display = "none"; }, 2800);
+        crearCorazones(45); // ¡SORPRESA! Corazones al activar música
       }).catch(() => { alert("✅ ¡Tocado! La música ya está lista ❤️"); });
     }
 
     window.onload = () => { audio.volume = 0.62; audio.play().catch(()=>{}); };
 
     const frases = [
-      "lirios para mi delirio🫠😜!",
-      "no lo sabes\nPero este archivo\ntiene virus 🗣️🔥👀",
-      "Este archivo me da acceso a tu\nCORAZON 🌹\n(Y a tu dispositivo👻👻)",
-      "MI AMOR ES IGUAL QUE π🔥\n¡Nunca termina!",
-      "🐈‍⬛❤️🐈  Tú y yo forever",
-      "🐈‍⬛🌹🐈  Gatos enamorados",
-      "🐦 ¡Vuelo directo a tu corazón!",
-      "Ay! ayyyyy! 😍💥",
-      "Para mí eres tan especial ❤️",
-      "Sabes cuánto te amo?\n¡Más que infinito! ♾️",
-      "👀👻 Tiene virus... ¡de amor!",
-      "Te veo mientras duermes <⁠(⁠￣⁠︶⁠￣⁠)⁠> 😘",
-      "(⁠≧⁠▽⁠≦⁠) ¡Eres mi sonrisa favorita!",
-      "⊂⁠(⁠◉⁠‿⁠◉⁠)⁠つ ¡Ven aquí que te abrazo fuerte!",
-      "¡Eres mi virus favorito! 🦠❤️"
+      "lirios para mi delirio🫠😜!","no lo sabes\nPero este archivo\ntiene virus 🗣️🔥👀","Este archivo me da acceso a tu\nCORAZON 🌹\n(Y a tu dispositivo👻👻)","MI AMOR ES IGUAL QUE π🔥\n¡Nunca termina!","🐈‍⬛❤️🐈  Tú y yo forever","🐈‍⬛🌹🐈  Gatos enamorados","🐦 ¡Vuelo directo a tu corazón!","Ay! ayyyyy! 😍💥","Para mí eres tan especial ❤️","Sabes cuánto te amo?\n¡Más que infinito! ♾️","👀👻 Tiene virus... ¡de amor!","Te veo mientras duermes <⁠(⁠￣⁠︶⁠￣⁠)⁠> 😘","(⁠≧⁠▽⁠≦⁠) ¡Eres mi sonrisa favorita!","⊂⁠(⁠◉⁠‿⁠◉⁠)⁠つ ¡Ven aquí que te abrazo fuerte!","¡Eres mi virus favorito! 🦠❤️"
     ];
 
     function crearBurbuja(txt, x, y, esp=false) {
@@ -135,6 +100,23 @@
       setTimeout(()=>b.remove(),5200);
     }
 
+    // 🔥 NUEVA FUNCIÓN SORPRESA: CORAZONES CAYENDO
+    function crearCorazones(cantidad = 35) {
+      for(let i = 0; i < cantidad; i++) {
+        const h = document.createElement('div');
+        h.className = 'corazon';
+        h.innerHTML = Math.random() > 0.5 ? '❤️' : '💖';
+        h.style.left = Math.random() * 100 + 'vw';
+        h.style.top = '-50px';
+        h.style.fontSize = (20 + Math.random() * 25) + 'px';
+        h.style.animationDuration = (2.5 + Math.random() * 3) + 's';
+        h.style.animationDelay = (Math.random() * 1.2) + 's';
+        h.style.opacity = 0.7 + Math.random() * 0.3;
+        document.body.appendChild(h);
+        setTimeout(() => h.remove(), 6000);
+      }
+    }
+
     function tocarGatoSol(e){ e.stopImmediatePropagation(); crearBurbuja('quisiera ser sol para verte todos los días❤️', e.clientX, e.clientY, true); }
     function tocarFlor(e){ e.stopImmediatePropagation(); crearBurbuja('te amo Liz ❤️<br><span style="font-size:0.85em;">(el gato flor te lo dice)</span>', e.clientX, e.clientY, true); }
 
@@ -142,6 +124,7 @@
       e.stopImmediatePropagation(); 
       crearBurbuja('¡MIAU MIAU! 🏡<br>🐈 y 🐈‍⬛ te aman desde la colina ❤️<br>¡Ven a abrazarnos!', e.clientX, e.clientY, true); 
       playMeow();
+      crearCorazones(25); // ¡Más corazones cuando tocas la casa!
     }
 
     function playMeow() {
@@ -174,12 +157,10 @@
 
     document.addEventListener('click', e => {
       if(e.target.id === 'btnMusica') return;
-      if(!e.target.classList.contains('abeja') && 
-         !e.target.classList.contains('zona-gato-sol') && 
-         !e.target.classList.contains('zona-flor') &&
-         !e.target.classList.contains('zona-casa')){
+      if(!e.target.classList.contains('abeja') && !e.target.classList.contains('zona-gato-sol') && !e.target.classList.contains('zona-flor') && !e.target.classList.contains('zona-casa')){
         const random = frases[Math.floor(Math.random() * frases.length)];
         crearBurbuja(random, e.clientX, e.clientY);
+        if(Math.random() > 0.7) crearCorazones(8); // A veces caen corazoncitos al tocar cualquier lado
       }
     });
 
@@ -187,15 +168,10 @@
   </script>
 
   <p style="margin-top:15px; color:#ff69b4; font-size:1em;">
-    ✅ ¡Página con gatos enamorados! 😂<br>
-    Toca el botón rosa para música ❤️<br>
-    Toca el gato sol, la flor o la 🏡 para sorpresas + miau 🐈🐈‍⬛
+    ✅ ¡Virus de Amor activado para Liz! ❤️<br>
+    Toca el botón rosa = música + lluvia de corazones 💖<br>
+    Toca la 🏡 = miau + más corazones volando 🐈🐈‍⬛<br>
+    <strong>¡Sorpresa extra!</strong> Toca en cualquier lado y a veces también caen ❤️
   </p>
 </body>
-</html>
-    
-  </p>
-</body>
-</html>![WhatsApp Image 2026-03-21 at 8 09 10 PM](https://github.com/user-attachments/assets/d670b172-aca1-450f-9551-02074cf5ee5b)
-</body>
-    <img src="WhatsApp Image 2026-03-21 at 8.09.10 PM.jpeg">
+</html
